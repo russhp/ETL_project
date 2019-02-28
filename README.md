@@ -26,16 +26,20 @@ _Tariffs_
 
 # Extract
 
-Data was downloaded from http://tse.export.gov/tse/ as .txt files, which are saved in the local resources folder. 
+Import data was downloaded from http://tse.export.gov/tse/ as .csv files, which were saved into the local resources folder. 
+
+Tariff data was downloaded from https://dataweb.usitc.gov/tariff/annual as pipe-separated '|' values, which were saved into the local resources folder. 
 
 The following extracts the data into dataframes for cleanup. Only the years 2008 to 2016 are to be analyzed
 
 # Transform
 
-The tariff dataframes formed during extraction contain 111 columns and over 10,000 rows, and the target data regards only aluminum powders and flakes (hts8 codes 7603-1000 and 7603-2000, two rows).
+The tariff dataframes formed during extraction contain 111 columns and over 10,000 rows, and the target data regards only aluminum powders and flakes (hts8 codes 7603-1000 and 7603-2000).
 
-The import data is simpler, all import values are in US dollars.
+The import data required transposing and joining two tables, all import values are in US dollars.
 
 # Load
 
-Uploaded aluminum tariff data and South Korea/Asia imports data to SQLite as tables for the analysts. Separate tables are uploaded for tariffs and for imports, otherwise the import data would have to be repeated excessively in a join. Analyst can choose whether they would like to examine powder, flakes, or both via a join in SQL.
+Upload aluminum tariff data and South Korea/Asia imports data to SQLite as tables for the analysts. By uploading from pandas DataFrame naturally translates to a relational database, and the schema is created in the process of uploading, saving some hardcoding. 
+
+Separate tables are uploaded for tariffs and for imports, otherwise the import data would have to be repeated excessively in a join. Analyst can choose whether they would like to examine powder, flakes, or both via a join in SQL.
